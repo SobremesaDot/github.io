@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web测试,测试技术,安全测试,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Session测试关注点 不登录系统，直接输入登录后的页面的url是否可以访问。 不登录系统，直接输入下载文件的url是否可以下载，如输入http://url/download?name=file是否可以下载文件file。 退出登录后按后退按钮能否访问之前的页面。 登陆后就不再操作页面，等达到Session过期时间后点击页面任意一个链接，如果能正常访问，表示Session实效时间设置不正确。 登录">
+<meta name="keywords" content="Web测试,测试技术,安全测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全测试CheckList">
+<meta property="og:url" content="http://yoursite.com/2019/09/18/安全测试CheckList/index.html">
+<meta property="og:site_name" content="CrayonM的笔记空间">
+<meta property="og:description" content="Session测试关注点 不登录系统，直接输入登录后的页面的url是否可以访问。 不登录系统，直接输入下载文件的url是否可以下载，如输入http://url/download?name=file是否可以下载文件file。 退出登录后按后退按钮能否访问之前的页面。 登陆后就不再操作页面，等达到Session过期时间后点击页面任意一个链接，如果能正常访问，表示Session实效时间设置不正确。 登录">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-17T00:27:12.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安全测试CheckList">
+<meta name="twitter:description" content="Session测试关注点 不登录系统，直接输入登录后的页面的url是否可以访问。 不登录系统，直接输入下载文件的url是否可以下载，如输入http://url/download?name=file是否可以下载文件file。 退出登录后按后退按钮能否访问之前的页面。 登陆后就不再操作页面，等达到Session过期时间后点击页面任意一个链接，如果能正常访问，表示Session实效时间设置不正确。 登录">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'CrayonMars'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/18/安全测试CheckList/">
+
+
+
+
+
+  <title>安全测试CheckList | CrayonM的笔记空间</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CrayonM的笔记空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">CrayonM努力成为一名合格的软件测试工程师</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            时间树
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/18/安全测试CheckList/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrayonM">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CrayonM的笔记空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安全测试CheckList</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-18T18:33:13+08:00">
+                2019-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web测试/" itemprop="url" rel="index">
+                    <span itemprop="name">Web测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Session测试关注点"><a href="#Session测试关注点" class="headerlink" title="Session测试关注点"></a>Session测试关注点</h2><ul>
+<li>不登录系统，直接输入登录后的页面的url是否可以访问。</li>
+<li>不登录系统，直接输入下载文件的url是否可以下载，如输入<code>http://url/download?name=file</code>是否可以下载文件file。</li>
+<li>退出登录后按后退按钮能否访问之前的页面。</li>
+<li>登陆后就不再操作页面，等达到Session过期时间后点击页面任意一个链接，如果能正常访问，表示Session实效时间设置不正确。</li>
+<li>登录系统账号1，在同一个浏览器子窗口里或同个浏览器新窗口再登录系统账号2，最终登录用户都为系统账号2。</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="cookies测试关注点"><a href="#cookies测试关注点" class="headerlink" title="cookies测试关注点"></a>cookies测试关注点</h2><ul>
+<li>打开WEB系统后，在浏览器默认存储cookies的目录下看此cookies目录是否存在。</li>
+<li>已知cookies的保存时间，测试时间范围之内和之外的cookies文件是否正常，即，在时间范围内，再次打开WEB系统时，默认信息是否会自动显示；在时间范围外，再次打开WEB系统时，默认信息是否不再显示.cookies是否失效。</li>
+<li>将浏览器下的所有cookies文件全部删除。若再次能登陆WEB系统，会有两种情况，其一，系统未使用cookies技术，其二，cookies为保存在IE设置的默认路径；若再次不能默认登陆WEB系统，则系统的cookies文件时放在IE的默认目录下的。</li>
+<li>重要信息（如密码，身份证号码，信用卡号、手机号码等）在输入或查询时是否用明文显示；在浏览器地址栏里输入命令<code>javascrīpt:alert(doucument.cookie)</code>时是否有重要信息；在html源码中能否看到重要信息。</li>
+<li>屏蔽 Cookie（用例1）<br>目的：这是最简单的Cookie 测试方法，检查当Cookie 被屏蔽时Web 系统会出现什么问题。<ul>
+<li>步骤1：首先关闭所有浏览器实例，删除测试机器上的所有cookie。设置IE 屏蔽Cookie，可通过把 IE 的“隐私”设置为** “阻止所有Cookie”**。</li>
+<li>步骤2：然后运行Web系统的所有主要功能，很多时候会出现功能不能正常运行的情况。这时系统就会提示用户必须激活Cookie 使用设置才能正常运行web系统，这时检查系统提示的cookie内容和需求说明书上的cookie种植点是否一致？</li>
+</ul>
+</li>
+<li>有选择性地拒绝Cookie（用例2）<br>目的：测试如果某些Cookie 被接受，某些Cookie 被拒绝，Web 系统会发生什么事情？<ul>
+<li>步骤1：首先删除测试机器上的所有Cookie，然后设置IE的Cookie 选项，当Web 系统试图设置一个Cookie 时弹出提示。</li>
+<li>步骤2：然后运行Web系统的所有主要功能。在弹出的Cookie 提示中，接受某些Cookie，拒绝某些Cookie。</li>
+<li>步骤3：检查Web系统的工作情况，看Web 服务器是否能检测出某些Cookie 被拒绝了，是否出现正确的提示信息。有可能Web 系统会因为这样而出现错误、崩溃、数据错乱，或其他不正常的行为。</li>
+</ul>
+</li>
+<li>Cookie 加密测试（用例3）<ul>
+<li>目的：检查存储的Cookie 文件内容，看是否有用户名、密码等敏感信息存储，并且未被加密处理。某些类型的数据即使是加密了也绝对不能存储在Cookie 文件中的，例如：网银交易中的信用卡号和交易密码。</li>
+<li>测试方法：可以手工地打开所有Cookie 文件来查看，也可以利用一些Cookie 编辑工具来查看。</li>
+</ul>
+</li>
+<li>Cookie 安全内容检查<ul>
+<li>Cookie 安全内容检查包括前面讲的存储内容的检查，还包括以下方面：</li>
+<li>Cookie 过期日期设置的合理性：检查是否把Cookie 的过期日期设置得过长。</li>
+<li><strong>HttpOnly</strong> 属性的设置：把Cookie 的HttpOnly 属性设置为True 有助于缓解跨站点脚本威胁，防止Cookie 被窃取。</li>
+<li><strong>Secure</strong>属性的设置：把Cookie 的Secure 属性设置为True，在传输Cookie 时使用SSL连接，能保护数据在传输过程中不被篡改。</li>
+</ul>
+</li>
+</ul>
+<h2 id="其他安全性测试关注点"><a href="#其他安全性测试关注点" class="headerlink" title="其他安全性测试关注点"></a>其他安全性测试关注点</h2><ul>
+<li>手动更改参数值能否访URL中的问没有权限访问的页面。如普通用户对应的url中的参数为l=e，高级用户对应的url中的参数为l=s，以普通用户的身份登录系统后将url中的参数e改为s来访问本没有权限访问的页面</li>
+<li>url里不可修改的参数是否可以被修改</li>
+<li>上传与服务器端语言（jsp、asp、php）一样扩展名的文件或exe等可执行文件后，确认在服务器端是否可直接运行</li>
+<li>注册用户时是否可以以<code>&#39;--,&#39; or 1=1 --</code>等做为用户名</li>
+<li>传送给服务器的参数（如查询关键字、url中的参数等）中包含特殊字符<code>（&#39;,&#39;and 1=1 --,&#39; and 1=0 --,&#39;or 1=0 --）</code>时是否可以正常处理</li>
+<li>执行新增操作时，在所有的输入框中输入脚本标签<code>（&lt;scrīpt&gt;alert(&quot;&quot;)&lt;/scrīpt&gt;）</code>后能否保存</li>
+<li>在url中输入下面的地址是否可以下载：<code>http://url/download.jsp?file=C:\windows\system32\drivers\etc\hosts,http://url/download.jsp?file=/etc/passwd</code></li>
+<li>错误信息中是否含有sql语句、sql错误信息以及web服务器的绝对路径等</li>
+<li>ID/密码验证方式中能否使用简单密码。如密码标准为6位以上，字母和数字混合，不能包含ID，连续的字母或数字不能超过n位，必须含有特殊字符等。</li>
+<li>ID/密码验证方式中，同一个账号在不同的机器上不能同时登录</li>
+<li>ID/密码验证方式中，连续数次输入错误密码后该账户是否被锁定</li>
+<li>新增或修改重要信息（密码、身份证号码、信用卡号等）时是否有自动完成功能（在form标签中使用autocomplete=off来关闭自动完成功能）</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web测试/" rel="tag"># Web测试</a>
+          
+            <a href="/tags/测试技术/" rel="tag"># 测试技术</a>
+          
+            <a href="/tags/安全测试/" rel="tag"># 安全测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/18/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/19/测试导论-第一话/" rel="prev" title="测试导论 第一话">
+                测试导论 第一话 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CrayonM</p>
+              <p class="site-description motion-element" itemprop="description">这里记录着我的日常学习，希望能够通过这种方式，形成良好的学习和复习习惯。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Session测试关注点"><span class="nav-number">1.</span> <span class="nav-text">Session测试关注点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookies测试关注点"><span class="nav-number">2.</span> <span class="nav-text">cookies测试关注点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他安全性测试关注点"><span class="nav-number">3.</span> <span class="nav-text">其他安全性测试关注点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CrayonM</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

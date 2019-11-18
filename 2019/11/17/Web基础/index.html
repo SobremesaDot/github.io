@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web测试,测试技术,安全测试,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Web测试基础Web网络基础 了解互联网 了解Web系统架构 了解Web发展历史 理解Web核心技术（客户端技术和服务端技术）">
+<meta name="keywords" content="Web测试,测试技术,安全测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web基础">
+<meta property="og:url" content="http://yoursite.com/2019/11/17/Web基础/index.html">
+<meta property="og:site_name" content="CrayonM的笔记空间">
+<meta property="og:description" content="Web测试基础Web网络基础 了解互联网 了解Web系统架构 了解Web发展历史 理解Web核心技术（客户端技术和服务端技术）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-17T00:24:45.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web基础">
+<meta name="twitter:description" content="Web测试基础Web网络基础 了解互联网 了解Web系统架构 了解Web发展历史 理解Web核心技术（客户端技术和服务端技术）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'CrayonMars'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/17/Web基础/">
+
+
+
+
+
+  <title>Web基础 | CrayonM的笔记空间</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CrayonM的笔记空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">CrayonM努力成为一名合格的软件测试工程师</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            时间树
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/Web基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrayonM">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CrayonM的笔记空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T03:59:59+08:00">
+                2019-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web测试/" itemprop="url" rel="index">
+                    <span itemprop="name">Web测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Web测试基础"><a href="#Web测试基础" class="headerlink" title="Web测试基础"></a>Web测试基础</h1><h2 id="Web网络基础"><a href="#Web网络基础" class="headerlink" title="Web网络基础"></a>Web网络基础</h2><ol>
+<li>了解互联网</li>
+<li>了解Web系统架构</li>
+<li>了解Web发展历史</li>
+<li>理解Web核心技术（客户端技术和服务端技术）</li>
+</ol>
+<a id="more"></a>
+
+<h4 id="Internet-amp-Intranet-网络"><a href="#Internet-amp-Intranet-网络" class="headerlink" title="Internet &amp; Intranet 网络"></a>Internet &amp; Intranet 网络</h4><ul>
+<li>Internet<ul>
+<li>定义<ul>
+<li>国际互联网</li>
+<li>由那些使用公用语言互相通信的计算机连接而成的全球网络</li>
+</ul>
+</li>
+<li>起源：<ul>
+<li>美国国防部高级研究计划局的前身ARPA建立的ARPAnet，该网于1969年投入使用。</li>
+</ul>
+</li>
+<li>目的：允许世界上数以亿计的人们进行通讯和共享信息</li>
+</ul>
+</li>
+<li>Intranet<ul>
+<li>定义：企业内部网</li>
+<li>特点：<ul>
+<li>相对封闭的网络环境</li>
+<li>防火墙保护</li>
+<li>有权限控制</li>
+</ul>
+</li>
+<li>目的：使企业内部的秘密或敏感信息收到保护</li>
+</ul>
+</li>
+<li>拓扑机构：见下图</li>
+</ul>
+<hr>
+<h4 id="三种网络体系架构"><a href="#三种网络体系架构" class="headerlink" title="三种网络体系架构"></a>三种网络体系架构</h4><ul>
+<li><p>C/S架构</p>
+<ul>
+<li>全称：Client/Server，即客户端/服务器</li>
+<li>又称为胖客户端。例如：360安全卫士、手机APP</li>
+<li>优点：<ul>
+<li>客户端与服务器直接相连，响应速度快</li>
+<li>界面多样性、满足客户个性化要求</li>
+<li>能实现复杂的业务流程</li>
+<li>面对有限群体，具有高机密性<ul>
+<li>缺点：</li>
+<li>客户端安装程序，不能够实现快速部署安装和配置</li>
+<li>兼容性差，各操作系统、多版本都要面对</li>
+<li>升级成本较高</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>B/S架构</p>
+<ul>
+<li>全称：Browser/Server，即浏览器/客户端</li>
+<li>又称为瘦客户端<ul>
+<li>客户端使用浏览器</li>
+<li>服务器端实现事务逻辑</li>
+<li>实例：购物网站网页版</li>
+</ul>
+</li>
+<li>优点：<ul>
+<li>具有分布性特点，可以随时随地进行查询、浏览等业务处理</li>
+<li>业务扩展简单方便，通过增加网页即可增加服务器功能</li>
+<li>维护简单方便，只需要改变网页，即可实现所有用户的同步更新</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>个性化特点明显降低，无法实现具有个性化功能的要求</li>
+<li>操作是以鼠标为最基本的操作方式，无法满足快速操作的要求</li>
+<li>页面动态刷新，响应速度明显降低</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>P2P架构</p>
+<ul>
+<li>全称：Point-to-Point</li>
+<li>点对点。实例：飞秋、QQ直播、迅雷</li>
+<li>优点：速度快</li>
+<li>缺点占用系统资源多</li>
+</ul>
+</li>
+</ul>
+<h4 id="Web的特点"><a href="#Web的特点" class="headerlink" title="Web的特点"></a>Web的特点</h4><ul>
+<li>图形化、易于导航</li>
+<li>与平台无关</li>
+<li>分布式</li>
+<li>动态</li>
+<li>具有交互性</li>
+</ul>
+<h4 id="Web工作原理"><a href="#Web工作原理" class="headerlink" title="Web工作原理"></a>Web工作原理</h4><ul>
+<li>HTTP处理流程<ol>
+<li>建立连接</li>
+<li>客户端浏览器发送请求给Web服务器</li>
+<li>Web服务器解析请求找到相应的资源</li>
+<li>Web服务器生成响应返回客户端</li>
+<li>关闭连接</li>
+</ol>
+</li>
+<li>客户端和服务器工作原理</li>
+</ul>
+<hr>
+<h4 id="Web站点的组成部分"><a href="#Web站点的组成部分" class="headerlink" title="Web站点的组成部分"></a>Web站点的组成部分</h4><ul>
+<li>实例：<ul>
+<li><a href="http://quotes.money.163.com/fund/jzzs_169101.html?start=2019-01-02&amp;end=2019-01-31" target="_blank" rel="noopener">http://quotes.money.163.com/fund/jzzs_169101.html?start=2019-01-02&amp;end=2019-01-31</a></li>
+<li>协议类型://主机名:端口号/路径/页面文件?附加部分</li>
+</ul>
+</li>
+<li>协议类型<ul>
+<li>http/https</li>
+<li>ftp</li>
+</ul>
+</li>
+<li>主机名<ul>
+<li>域名和IP等价。实例：<a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a> = <a href="https://180.97.33.107/" target="_blank" rel="noopener">https://180.97.33.107/</a></li>
+<li>DNS服务器把域名解析为IP</li>
+</ul>
+</li>
+<li>端口号<ul>
+<li>默认端口号可以省略。如：如<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> = <a href="https://www.baidu.com:443" target="_blank" rel="noopener">https://www.baidu.com:443</a><ul>
+<li>http默认端口80</li>
+<li>https默认端口43</li>
+<li>ftp默认端口21</li>
+</ul>
+</li>
+<li>非默认端口要注明端口号</li>
+</ul>
+</li>
+<li>页面文件<ul>
+<li>服务器上哪个文件，包括路径</li>
+<li>默认文件可以忽略。一般为index.htm或者是index.php</li>
+</ul>
+</li>
+<li>附件部分 <ul>
+<li>URL = Uniform Resource Locator。统一资源定位符</li>
+<li>URL地址参数<ul>
+<li>？之后的部分。如：start=2019-01-02&amp;end=2019-01-31</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="课外阅读"><a href="#课外阅读" class="headerlink" title="课外阅读"></a>课外阅读</h4><ol>
+<li>交换机和路由器的区别</li>
+<li>Web1.0~3.0的发展历程</li>
+<li>Web客户端和服务器技术</li>
+<li>Web服务器的反正趋势</li>
+<li>HTTP响应状态码</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web测试/" rel="tag"># Web测试</a>
+          
+            <a href="/tags/测试技术/" rel="tag"># 测试技术</a>
+          
+            <a href="/tags/安全测试/" rel="tag"># 安全测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/19/测试导论-第四话/" rel="next" title="测试导论 第四话">
+                <i class="fa fa-chevron-left"></i> 测试导论 第四话
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/17/Web网络协议/" rel="prev" title="Web网络协议">
+                Web网络协议 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CrayonM</p>
+              <p class="site-description motion-element" itemprop="description">这里记录着我的日常学习，希望能够通过这种方式，形成良好的学习和复习习惯。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web测试基础"><span class="nav-number">1.</span> <span class="nav-text">Web测试基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web网络基础"><span class="nav-number">1.1.</span> <span class="nav-text">Web网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Internet-amp-Intranet-网络"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Internet &amp; Intranet 网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三种网络体系架构"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">三种网络体系架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web的特点"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">Web的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web工作原理"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">Web工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web站点的组成部分"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">Web站点的组成部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#课外阅读"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">课外阅读</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CrayonM</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

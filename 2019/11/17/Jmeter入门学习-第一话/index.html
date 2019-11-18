@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="测试工具,性能测试,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Jmeter的使用范围接口测试什么是接口 接口是系统与系统之间进行交互的通道">
+<meta name="keywords" content="测试工具,性能测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jmeter入门学习-第一话">
+<meta property="og:url" content="http://yoursite.com/2019/11/17/Jmeter入门学习-第一话/index.html">
+<meta property="og:site_name" content="CrayonM的笔记空间">
+<meta property="og:description" content="Jmeter的使用范围接口测试什么是接口 接口是系统与系统之间进行交互的通道">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-17T12:05:15.599Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jmeter入门学习-第一话">
+<meta name="twitter:description" content="Jmeter的使用范围接口测试什么是接口 接口是系统与系统之间进行交互的通道">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'CrayonMars'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/17/Jmeter入门学习-第一话/">
+
+
+
+
+
+  <title>Jmeter入门学习-第一话 | CrayonM的笔记空间</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CrayonM的笔记空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">CrayonM努力成为一名合格的软件测试工程师</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            时间树
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/Jmeter入门学习-第一话/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrayonM">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CrayonM的笔记空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jmeter入门学习-第一话</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T04:07:29+08:00">
+                2019-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/性能测试/" itemprop="url" rel="index">
+                    <span itemprop="name">性能测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/性能测试/测试工具/" itemprop="url" rel="index">
+                    <span itemprop="name">测试工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Jmeter的使用范围"><a href="#Jmeter的使用范围" class="headerlink" title="Jmeter的使用范围"></a>Jmeter的使用范围</h3><h4 id="接口测试"><a href="#接口测试" class="headerlink" title="接口测试"></a>接口测试</h4><h5 id="什么是接口"><a href="#什么是接口" class="headerlink" title="什么是接口"></a>什么是接口</h5><ul>
+<li>接口是系统与系统之间进行交互的通道</li>
+</ul>
+<a id="more"></a>
+
+<h5 id="软件结构"><a href="#软件结构" class="headerlink" title="软件结构"></a>软件结构</h5><ul>
+<li>UI层<ul>
+<li>软件的界面显示。由前端人员开发的软件界面<ul>
+<li>主要使用HTML、CSS、JS等语言进行编写</li>
+</ul>
+</li>
+<li>作用：<ul>
+<li>界面显示</li>
+<li>用户之间的交互（进行操作或查看）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>业务逻辑层（接口层）<ul>
+<li>后端人员进行逻辑运算（使用Python、JAVA、C、C++等语言编写）</li>
+<li>作用：进行业务逻辑处理与运算</li>
+</ul>
+</li>
+<li>数据层<ul>
+<li>为借口提供数据的查询、修改等</li>
+</ul>
+</li>
+</ul>
+<h4 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h4><h5 id="B-S架构"><a href="#B-S架构" class="headerlink" title="B/S架构"></a>B/S架构</h5><ul>
+<li>关注的重点在服务器，包括以下三点：<ul>
+<li>最大并发数：服务器能够承受的用户并发数量</li>
+<li>吞吐量：服务器每秒处理的数据量大小</li>
+<li>响应时间（从客户端——服务器的整个过程所需要的时间）</li>
+</ul>
+</li>
+</ul>
+<h5 id="C-S架构"><a href="#C-S架构" class="headerlink" title="C/S架构"></a>C/S架构</h5><ul>
+<li>内存占用</li>
+<li>CPU占用</li>
+<li>启动时间</li>
+<li>切换时间</li>
+<li>等</li>
+</ul>
+<h3 id="Jmeter常用功能"><a href="#Jmeter常用功能" class="headerlink" title="Jmeter常用功能"></a>Jmeter常用功能</h3><h4 id="线程组"><a href="#线程组" class="headerlink" title="线程组"></a>线程组</h4><ul>
+<li>用户管理测试中的虚拟用户</li>
+<li>线程数 = 虚拟用户数</li>
+<li>Ramp - up Period = 执行时间</li>
+<li>循环次数<ul>
+<li>单个用户的循环次数</li>
+<li>永远：一直执行</li>
+</ul>
+</li>
+</ul>
+<h4 id="脚本录制"><a href="#脚本录制" class="headerlink" title="脚本录制"></a>脚本录制</h4><h5 id="BadBoy录制"><a href="#BadBoy录制" class="headerlink" title="BadBoy录制"></a>BadBoy录制</h5><ul>
+<li>HTTP Cookie Manager：用于管理当前场景产生的Cookie</li>
+<li>User Defined Variables：用于管理当前场景产生的Session</li>
+<li>HTTP Header Manager：用于管理请求消息头<ul>
+<li>请求方式</li>
+<li>长连接</li>
+<li>客户端编码格式</li>
+<li>压缩方式等</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>不能录制不兼容IE浏览器的网站</li>
+<li>自动过滤资源类文件（JS、图片文件、CSS）</li>
+</ul>
+</li>
+</ul>
+<h5 id="HTTP代理服务器录制"><a href="#HTTP代理服务器录制" class="headerlink" title="HTTP代理服务器录制"></a>HTTP代理服务器录制</h5><ul>
+<li>首先清理浏览器缓存（ctrl+shift+delete该命令所有浏览器通用）</li>
+<li>采用包含模式录制：只录制某一类请求（<code>php / js / jpg / png</code>等）</li>
+<li>排除模式（过滤模式）：不录制某一类请求<ul>
+<li>书写格式：<code>.*\.jpg.*</code>，<code>.*\.js.*</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="参数化"><a href="#参数化" class="headerlink" title="参数化"></a>参数化</h4><ul>
+<li>便于测试数据的管理、维护和使用</li>
+<li>设置用户变量</li>
+<li>外部文件参数化：CSV<ul>
+<li>filename：要引用的外部文件的路径和文件</li>
+<li>file encoding：文件的编码格式（utf-8）</li>
+<li>variable names：变量的名字，多个变量通过逗号隔开</li>
+<li>deLimiter：文件中的数据的分割方式<ul>
+<li>空格为分隔符</li>
+<li>tab键为分隔符（\t）</li>
+<li><code>,</code>为分隔符（默认的分割方式）</li>
+</ul>
+</li>
+<li>allow quoted data：是否支持全角输入</li>
+<li>Recycle on EOF：是否支持循环</li>
+<li>stop thread on EOF：测试数据使用完，就停止执行</li>
+<li>sharing mode：测试数据的有效范围</li>
+</ul>
+</li>
+<li>随机数：可以使用随机数来生成大量不重复的测试数据<ul>
+<li>${__Random(100000,999999,)}</li>
+</ul>
+</li>
+</ul>
+<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><ul>
+<li>断言是测试的预期结果</li>
+<li>响应断言<ul>
+<li>判断响应信息中是否包含指定关键字</li>
+<li>查找范围<ul>
+<li>响应文本：检查页面返回源代码</li>
+<li>Document：检查程序处理之前的源代码</li>
+<li>URL地址：检查请求的URL地址</li>
+<li>响应代码：<ul>
+<li>2XX：请求成功</li>
+<li>3XX：请求重定向</li>
+<li>4XX：客户端错误</li>
+<li>5XX：服务器错误</li>
+</ul>
+</li>
+<li>响应信息<ul>
+<li>OK：响应成功</li>
+<li>not found：找不到页面</li>
+</ul>
+</li>
+<li>Response Header：响应数据的消息头</li>
+</ul>
+</li>
+<li>匹配规则<ul>
+<li>包括（模糊查询）</li>
+<li>匹配（精确查询）</li>
+<li>Equals</li>
+<li>Substring</li>
+<li>否</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>时间断言：判断单个请求的时长</li>
+<li>大小断言：判断单个请求返回数据的大小</li>
+</ul>
+<h4 id="时间控制器"><a href="#时间控制器" class="headerlink" title="时间控制器"></a>时间控制器</h4><ul>
+<li>固定定时器的作用范围<ul>
+<li>如果定时器存放在目录中，对目录中的所有请求生效</li>
+<li>如果定时器存在某个请求中，只对单个请求生效</li>
+</ul>
+</li>
+<li>随机定时器：作用范围与固定定时器相同</li>
+<li>随机定时器</li>
+<li>集合点：可以通过设置集合点，来达到并发测试的目的</li>
+</ul>
+<h4 id="逻辑控制器"><a href="#逻辑控制器" class="headerlink" title="逻辑控制器"></a>逻辑控制器</h4><ul>
+<li>循环控制器：用户控制循环次数</li>
+<li>随机控制器</li>
+</ul>
+<h4 id="结果查看"><a href="#结果查看" class="headerlink" title="结果查看"></a>结果查看</h4><ul>
+<li>查看结果树</li>
+<li>图形报告</li>
+<li>聚合报告中的指标<ul>
+<li>average</li>
+<li>median</li>
+<li>90%line</li>
+<li>min</li>
+<li>max</li>
+<li>error</li>
+<li>throughput</li>
+<li>流量</li>
+</ul>
+</li>
+</ul>
+<h4 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h4><h4 id="数据库压测"><a href="#数据库压测" class="headerlink" title="数据库压测"></a>数据库压测</h4><h4 id="联机负载"><a href="#联机负载" class="headerlink" title="联机负载"></a>联机负载</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/测试工具/" rel="tag"># 测试工具</a>
+          
+            <a href="/tags/性能测试/" rel="tag"># 性能测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/17/Oracle数据库入门学习-第一话/" rel="next" title="Oracle数据库入门学习-第一话">
+                <i class="fa fa-chevron-left"></i> Oracle数据库入门学习-第一话
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/17/接口测试-第一话/" rel="prev" title="接口测试-第一话">
+                接口测试-第一话 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CrayonM</p>
+              <p class="site-description motion-element" itemprop="description">这里记录着我的日常学习，希望能够通过这种方式，形成良好的学习和复习习惯。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jmeter的使用范围"><span class="nav-number">1.</span> <span class="nav-text">Jmeter的使用范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接口测试"><span class="nav-number">1.1.</span> <span class="nav-text">接口测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是接口"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件结构"><span class="nav-number">1.1.2.</span> <span class="nav-text">软件结构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试"><span class="nav-number">1.2.</span> <span class="nav-text">性能测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#B-S架构"><span class="nav-number">1.2.1.</span> <span class="nav-text">B/S架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#C-S架构"><span class="nav-number">1.2.2.</span> <span class="nav-text">C/S架构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jmeter常用功能"><span class="nav-number">2.</span> <span class="nav-text">Jmeter常用功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程组"><span class="nav-number">2.1.</span> <span class="nav-text">线程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#脚本录制"><span class="nav-number">2.2.</span> <span class="nav-text">脚本录制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#BadBoy录制"><span class="nav-number">2.2.1.</span> <span class="nav-text">BadBoy录制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP代理服务器录制"><span class="nav-number">2.2.2.</span> <span class="nav-text">HTTP代理服务器录制</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数化"><span class="nav-number">2.3.</span> <span class="nav-text">参数化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#断言"><span class="nav-number">2.4.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间控制器"><span class="nav-number">2.5.</span> <span class="nav-text">时间控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑控制器"><span class="nav-number">2.6.</span> <span class="nav-text">逻辑控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果查看"><span class="nav-number">2.7.</span> <span class="nav-text">结果查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关联"><span class="nav-number">2.8.</span> <span class="nav-text">关联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库压测"><span class="nav-number">2.9.</span> <span class="nav-text">数据库压测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联机负载"><span class="nav-number">2.10.</span> <span class="nav-text">联机负载</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CrayonM</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
